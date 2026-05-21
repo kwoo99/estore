@@ -33,7 +33,7 @@ export default function ProductsList({ products }: Props) {
         <div key={index}>
           <h2>{p.name}</h2>
           <p>{p.description}</p>
-          <p>${p.price}</p>
+          <p>${p.price}</p> 
           <button className={styles.button}>
             Add to Cart
           </button>

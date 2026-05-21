@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import EditProductForm from "./editProductClient";
+import EditProductForm from "./edit-client";
 
 type Props = {
   params: {

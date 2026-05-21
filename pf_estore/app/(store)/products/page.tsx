@@ -1,4 +1,4 @@
-import Products from "./productClient";
+import Products from "./products-client";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function ProductsData() {

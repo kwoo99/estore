@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import ProductForm from "./newProductClient";
+import ProductForm from "./new-product-client";
 
 export default function NewProduct() {
 
