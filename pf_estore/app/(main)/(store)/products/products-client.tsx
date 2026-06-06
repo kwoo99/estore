@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/context/cart-context";
 import styles from "./products.module.css";
 
     type Products = {
@@ -10,10 +11,14 @@ import styles from "./products.module.css";
     }
 
     type Props = {
-        products: Products[];
+        products: Products[],
+        user: any,
+        isAdmin: boolean
     }
 
-export default function ProductsList({ products }: Props) {
+export default function ProductsList({ products, isAdmin }: Props) {
+
+    const { addToCart } = useCart();
 
     const router = useRouter();
     async function handleAddNewProduct() {
@@ -26,20 +31,22 @@ export default function ProductsList({ products }: Props) {
 
   return (
     <div className={styles.container}>
-        <button className={styles.button} onClick={handleAddNewProduct}>
-            Add New Product
-        </button>
-      {products.map((p, index) => (
-        <div key={index}>
+        {isAdmin && (
+            <button className={styles.button} onClick={handleAddNewProduct}>
+                Add New Product
+            </button>
+        )}
+      {products.map((p) => (
+        <div key={p.id}>
           <h2>{p.name}</h2>
           <p>{p.description}</p>
           <p>${p.price}</p> 
-          <button className={styles.button}>
+          <button className={styles.button} onClick={() => addToCart(p, 1)}>
             Add to Cart
           </button>
-          <button className={styles.button} onClick={() => handleAddEditProduct(p.id)}>
+          {isAdmin && <button className={styles.button} onClick={() => handleAddEditProduct(p.id)}>
             Edit
-          </button>
+          </button>}
         </div>
       ))}
     </div>
