@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import CartDropdown from "@/components/nav/cart-dropdown";
+import AccountDropdown from "@/components/nav/account-dropdown";
 
 export default function NavbarClient({
   user,
@@ -26,8 +27,8 @@ export default function NavbarClient({
       <a href="/products">Products</a>
       {user ? (
         <>
-          <a href="/account">Account</a>
-          {isAdmin && <a href="/admin/products">Admin</a>}
+          <AccountDropdown user={user} />
+          {isAdmin && <a href="/manage-users">Admin</a>}
           <CartDropdown user={user} />
           <button onClick={handleSignOut}>Sign out</button>
         </>
